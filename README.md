@@ -49,8 +49,8 @@ Each [release](https://github.com/tiltgroup/nexus-connector/releases) has those 
 
 ## Privacy and support
 
-- Privacy policy: TODO_PRIVACY_POLICY_URL
-- Support: TODO_SUPPORT_CONTACT
+- Privacy policy: https://tilt.ai/privacy-policy
+- Support: https://tilt.ai/
 
 Data you access through the connector stays subject to your company's agreement with Tilt Group. What you send to your AI assistant is handled under your agreement with its provider.
 
