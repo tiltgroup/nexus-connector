@@ -7,10 +7,6 @@ description: Find a Nexus load (shipment) and report where it is right now using
 
 Nexus holds the load; iTracker holds its live tracking. Every call runs as the signed-in user, so only loads that user can see are returned.
 
-## Work from the live schema
-
-The Nexus and iTracker APIs change over time, so don't assume field or argument names. Find them with `nexus_search_schema` / `itracker_search_schema`, confirm them with `nexus_describe_types` / `itracker_describe_types`, and when a query returns an error, read it, describe the type it names and fix the query instead of guessing.
-
 ## 1. Find the load in Nexus
 
 - With a Nexus load number, read that load directly.
@@ -29,5 +25,3 @@ The Nexus and iTracker APIs change over time, so don't assume field or argument 
 Lead with the answer: where the load is, whether it is on time, and the ETA to the next stop, with times in the stop's local timezone. Then add the supporting detail: the last position and when it was recorded, the delay reason, and any open alerts. Say clearly when tracking data is stale or missing rather than guessing.
 
 iTracker is read-only here. To change anything on a load, use the Nexus tools and follow the confirmation rule in the create-load skill.
-
-Link every load you mention to Nexus: `https://nexus.tiltgroup.com/shipments/<id>`.

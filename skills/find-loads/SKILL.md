@@ -5,14 +5,6 @@ description: Find and list Nexus loads (shipments) by status, customer, carrier,
 
 # Find loads
 
-## Work from the live schema
-
-The Nexus API changes over time, so don't assume field, filter or value names. Before writing a query:
-
-1. `nexus_search_schema` with the user's terms (for example `load`, `status`, `alert`, `carrier`) to find the list query for loads and its filter arguments.
-2. `nexus_describe_types` for that query's filter and ordering input types, and for any enum you filter on, so you use the exact column names, operators and allowed values.
-3. Write one `nexus_query`. If it returns an error, read the message, describe the type it names, fix the query and try again. Don't guess.
-
 ## Build the query
 
 - Add only the filters the user asked for.
@@ -23,6 +15,5 @@ The Nexus API changes over time, so don't assume field, filter or value names. B
 ## Answer
 
 - Give the count first ("14 loads are in transit, showing the first 10"), then a compact table: load id, status, origin → destination, pickup and delivery appointments, customer, carrier.
-- Link each load to Nexus: `https://nexus.tiltgroup.com/shipments/<id>`.
 - Offer the next page when there are more results; don't fetch every page unprompted.
 - To go deeper on one load, use the track-load skill.

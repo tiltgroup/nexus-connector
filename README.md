@@ -6,6 +6,7 @@ Connect your AI assistant to **Nexus**, the freight brokerage TMS, and **iTracke
 - **Track a load:** find a load by number, reference, customer or lane, and get its live position, ETA and delays from iTracker.
 - **Triage alerts:** see which loads need attention, grouped by severity, and acknowledge, snooze or resolve alerts.
 - **Create a load:** turn order details or a pasted rate confirmation into a validated Nexus load.
+- **Check a carrier:** look for signs of fraud, double brokering or cargo-theft risk on a carrier or a load, with the evidence and suggested next steps.
 - **Quote and book:** request LTL quotes, compare carriers on price and transit time, and book the one you choose. You can also check lane pricing and historical rates for truckload.
 
 ## Choose your assistant

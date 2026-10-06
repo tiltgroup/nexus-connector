@@ -5,10 +5,6 @@ description: Get LTL freight quotes in Nexus, compare carrier rates and transit 
 
 # Quote and book
 
-## Work from the live schema
-
-The Nexus API changes over time, so don't assume query, mutation, input or status names. Search the schema (for example `ltl quote`, `lane pricing`, `historical rate`), describe the types you find, and use exactly what they say. When a call returns an error, read it, describe the type it names and fix the request instead of guessing.
-
 ## Truckload rates (read-only)
 
 For a truckload price check, use the pricing data the schema offers for a lane, such as lane pricing and historical rates. Present the rate range with its source and date, and say how confident it is when the data is thin.
@@ -21,5 +17,3 @@ For a truckload price check, use the pricing data the schema offers for a lane, 
 4. **Book (changes data).** Booking commits the shipment with the carrier. Restate the quote: carrier, total cost, transit time and pickup date. Wait for an explicit yes, then book that exact quote and report the resulting shipment and its status.
 
 If booking fails, say so and offer the next-best quote; never book a different quote without asking.
-
-Link every load you mention to Nexus: `https://nexus.tiltgroup.com/shipments/<id>`.

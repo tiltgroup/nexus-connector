@@ -7,10 +7,6 @@ description: Create a new load (shipment) in Nexus from details the user gives â
 
 Creating a load writes real data. Follow these steps in order.
 
-## Work from the live schema
-
-The Nexus API changes over time, so don't assume input or field names. Search the schema for the load creation mutation and describe its input type and every nested input type before building the request; required fields and nesting come from there, not from memory. When a call returns an error, read it, describe the type it names and fix the input instead of guessing.
-
 ## 1. Gather the details
 
 At minimum you need:
@@ -35,5 +31,3 @@ If the schema offers a validation or dry-run mutation for loads, run it first wi
 Show the user a short summary of the load exactly as it will be created: customer, each stop with its appointment, equipment, commodity and weight, rates, and references. Wait for an explicit yes. Only then create the load and reply with its id and status.
 
 If creation fails, report the error in plain words and what needs to change; don't retry with guessed values.
-
-Link every load you mention to Nexus: `https://nexus.tiltgroup.com/shipments/<id>`.

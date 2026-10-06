@@ -5,10 +5,6 @@ description: Review and triage open shipment alerts and exceptions in Nexus — 
 
 # Triage exceptions and alerts
 
-## Work from the live schema
-
-The Nexus API changes over time, so don't assume field, filter or value names. Search the schema for `alert`, describe the alert type, its filters and its severity and type enums, and use exactly what they say. When a query returns an error, read it, describe the type it names and fix the query instead of guessing.
-
 ## 1. Pull the open alerts
 
 - Only unresolved alerts, and leave out ones the user has snoozed unless they ask for them.
@@ -27,5 +23,3 @@ The Nexus API changes over time, so don't assume field, filter or value names. S
 Search the schema for the alert mutations to acknowledge, snooze or resolve alerts. Read their descriptions: some actions affect only the current user, while resolving notifies the people watching the load.
 
 Before any `nexus_mutate` call, list exactly which alerts will change and how, and wait for the user's explicit confirmation. Never resolve an alert on your own judgement.
-
-Link every load you mention to Nexus: `https://nexus.tiltgroup.com/shipments/<id>`.
