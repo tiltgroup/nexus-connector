@@ -1,44 +1,31 @@
-# Nexus for Claude
+# Nexus connector for AI assistants
 
-Connect Claude to **Nexus**, the freight brokerage TMS, and **iTracker** live tracking. Ask Claude about your loads in plain language, and let it help with the routine work:
+Connect your AI assistant to **Nexus**, the freight brokerage TMS, and **iTracker** live tracking. Ask about your loads in plain language and let the assistant help with the routine work:
 
 - **Track a load:** find a load by number, reference, customer or lane, and get its live position, ETA and delays from iTracker.
 - **Triage alerts:** see which loads need attention, grouped by severity, and acknowledge, snooze or resolve alerts.
 - **Create a load:** turn order details or a pasted rate confirmation into a validated Nexus load.
 - **Quote and book:** request LTL quotes, compare carriers on price and transit time, and book the one you choose. You can also check lane pricing and historical rates for truckload.
 
-This repository contains two parts:
+## Choose your assistant
 
-1. **The Nexus connector:** a remote MCP server at `https://nexus.tiltgroup.com/api/mcp`. It gives Claude the tools to read Nexus and iTracker and to make changes in Nexus.
-2. **The Nexus plugin:** skills that teach Claude the workflows above, plus the connector configuration for Claude Code.
+| Assistant | Status | Who sets it up | Guide |
+|---|---|---|---|
+| Claude (web, desktop, Claude Code) | Pilot | You, or your Claude organization owner | [Claude](docs/claude.md) |
+| ChatGPT (Business, Enterprise) | Coming soon | Your ChatGPT workspace admin | [ChatGPT](docs/chatgpt.md) |
+| Gemini Enterprise | Planned | Your Gemini Enterprise admin | [Gemini](docs/gemini.md) |
+
+Every assistant connects to the same Nexus connector, a remote MCP server at `https://nexus.tiltgroup.com/api/mcp`, and uses the same workflows from [`skills/`](skills).
 
 ## Before you start
 
 - You need a Nexus user account.
 - An administrator in your company with the **Manage Integrations** permission must enable the AI connector in Nexus under **Settings → Integrations**. Until then, the connector refuses requests.
-- Claude acts **as you**. Every request runs with your own Nexus permissions, so Claude can see and change only what you could in Nexus yourself. Signing in happens on the Nexus login page; Claude never sees your password.
+- The assistant acts **as you**. Every request runs with your own Nexus permissions, so it can see and change only what you could in Nexus yourself. You sign in on the Nexus login page; the assistant never sees your password.
 - iTracker data is read-only through the connector.
-- Claude always describes a change and asks for your confirmation before it creates, updates, books or resolves anything.
+- The assistant describes every change and asks for your confirmation before it creates, updates, books or resolves anything.
 
-You can review or revoke the apps connected to your account at any time in Nexus under **Settings → Integrations**.
-
-## Set up in Claude (web and desktop)
-
-1. Go to **Settings → Connectors** and choose **Add custom connector**.
-2. Name: `Nexus`. URL: `https://nexus.tiltgroup.com/api/mcp`.
-3. Select **Connect** and sign in with your Nexus account.
-4. Optional but recommended: install the plugin from this repository so Claude knows the workflows. Add this repository as a plugin marketplace, then install the `nexus` plugin.
-
-On a Team or Enterprise plan, an owner may need to add the connector for the organization first.
-
-## Set up in Claude Code
-
-```bash
-claude plugin marketplace add tiltgroup/nexus-connector
-claude plugin install nexus@nexus-connector
-```
-
-The plugin registers the Nexus connector. The first time Claude uses it, run `/mcp` and sign in with your Nexus account.
+You can review or revoke the assistants connected to your account at any time in Nexus under **Settings → Integrations**.
 
 ## Example prompts
 
@@ -47,12 +34,23 @@ The plugin registers the Nexus connector. The first time Claude uses it, run `/m
 - "Create a load for Acme Foods: pickup Dallas TX tomorrow 8am, deliver Atlanta GA Friday, 53' dry van, 38,000 lb of canned goods, customer rate $2,450."
 - "Get LTL quotes for 4 pallets, class 70, 1,800 lb, from Chicago 60607 to Denver 80216, and book the cheapest one that arrives by Thursday."
 
+## What's in this repository
+
+| Path | What it is |
+|---|---|
+| `skills/` | The workflows, one `SKILL.md` per workflow. The single source for every assistant. |
+| `.claude-plugin/`, `.mcp.json` | The Claude plugin and plugin marketplace. |
+| `docs/` | Setup guides per assistant. |
+| `scripts/package.sh` | Builds the downloads: one zip per skill for ChatGPT, and one instructions file for Gemini. |
+
+Each [release](https://github.com/tiltgroup/nexus-connector/releases) has those downloads attached, so nobody has to build anything.
+
 ## Privacy and support
 
 - Privacy policy: TODO_PRIVACY_POLICY_URL
 - Support: TODO_SUPPORT_CONTACT
 
-Data you access through the connector stays subject to your company's agreement with Tilt Group. What you send to Claude is handled under your agreement with Anthropic.
+Data you access through the connector stays subject to your company's agreement with Tilt Group. What you send to your AI assistant is handled under your agreement with its provider.
 
 ## License
 
