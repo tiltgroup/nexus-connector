@@ -29,3 +29,5 @@ The mutations are `acknowledgeShipmentAlert(ids)`, `snoozeShipmentAlerts(ids)`, 
 Acknowledging and snoozing affect only the current user. Resolving notifies the load's watchers.
 
 Before any `nexus_mutate` call, list exactly which alerts will change and how, and wait for the user's explicit confirmation. Never resolve an alert on your own judgement.
+
+Link every load you mention to Nexus: `https://nexus.tiltgroup.com/shipments/<id>`.

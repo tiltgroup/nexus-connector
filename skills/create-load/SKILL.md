@@ -38,3 +38,5 @@ When a name matches more than one record, ask which one. Never create a client o
 Show the user a short summary of the load exactly as it will be created: customer, each stop with its appointment, equipment, commodity and weight, rates, and references. Wait for an explicit yes. Only then call `createLoad(input: …)` and reply with the new load id and status.
 
 If creation fails, report the error in plain words and what needs to change; do not retry with guessed values.
+
+Link every load you mention to Nexus: `https://nexus.tiltgroup.com/shipments/<id>`.

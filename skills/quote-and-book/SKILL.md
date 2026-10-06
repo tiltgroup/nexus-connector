@@ -17,3 +17,5 @@ For a truckload price check, use the existing pricing data: `lanePricing(id)`, `
 4. **Book (changes data).** Booking commits the shipment with the carrier. Restate the quote: carrier, total cost, transit time and pickup date. Wait for an explicit yes, then call `bookLtlQuote(input: { id: <quote id>, carrier: … })`. Report the booked shipment from `ltlQuoteRequest(id) { status bookedShipment { id status } }`.
 
 If booking fails (status `BOOKING_FAILED`), say so and offer the next-best quote; never book a different quote without asking.
+
+Link every load you mention to Nexus: `https://nexus.tiltgroup.com/shipments/<id>`.

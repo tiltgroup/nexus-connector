@@ -2,6 +2,7 @@
 
 Connect your AI assistant to **Nexus**, the freight brokerage TMS, and **iTracker** live tracking. Ask about your loads in plain language and let the assistant help with the routine work:
 
+- **Find loads:** list loads by status, customer, carrier, lane, dates, open alerts or coverage, with a link to each one in Nexus.
 - **Track a load:** find a load by number, reference, customer or lane, and get its live position, ETA and delays from iTracker.
 - **Triage alerts:** see which loads need attention, grouped by severity, and acknowledge, snooze or resolve alerts.
 - **Create a load:** turn order details or a pasted rate confirmation into a validated Nexus load.
@@ -31,6 +32,7 @@ You can review or revoke the assistants connected to your account at any time in
 
 - "Where is load 48213 and will it make the delivery appointment?"
 - "Which of my loads have critical alerts right now?"
+- "Show me everything picking up in Texas tomorrow that still has no carrier."
 - "Create a load for Acme Foods: pickup Dallas TX tomorrow 8am, deliver Atlanta GA Friday, 53' dry van, 38,000 lb of canned goods, customer rate $2,450."
 - "Get LTL quotes for 4 pallets, class 70, 1,800 lb, from Chicago 60607 to Denver 80216, and book the cheapest one that arrives by Thursday."
 
