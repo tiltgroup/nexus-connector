@@ -5,28 +5,26 @@ description: Review and triage open shipment alerts and exceptions in Nexus — 
 
 # Triage exceptions and alerts
 
+## Work from the live schema
+
+The Nexus API changes over time, so don't assume field, filter or value names. Search the schema for `alert`, describe the alert type, its filters and its severity and type enums, and use exactly what they say. When a query returns an error, read it, describe the type it names and fix the query instead of guessing.
+
 ## 1. Pull the open alerts
 
-`nexus_query` with `shipmentAlerts(...)`:
-
-- Open alerts only: `where: { column: IS_RESOLVED, operator: EQ, value: false }`.
-- Narrow with the `ShipmentAlertFilters` columns (`TYPE`, `SEVERITY`, `CREATED_AT`), `teamIds`, or `shipmentId` for a single load. Pass `snoozed: false` to hide alerts the user already snoozed.
-- Select `id`, `type`, `severity`, `note`, `createdAt`, `acknowledgedAt`, `resolveAt`, and the load: `shipment { id status itracker_reference_id }`.
-
-Severity runs `CRITICAL` > `MAJOR` > `MINOR` > `LOW`. Confirm the enum values and fields with `nexus_describe_types` (`ShipmentAlert`, `ShipmentAlertType`) before filtering.
+- Only unresolved alerts, and leave out ones the user has snoozed unless they ask for them.
+- Narrow by severity, type, team or a single load when the user asks.
+- For each alert, get its type, severity, note, when it was raised, whether it was acknowledged, and the load it belongs to.
 
 ## 2. Triage
 
-- Group the alerts by severity, then by load, so one problem load reads as one item.
-- For tracking-related types (lost signal, off route, stopped, pickup or delivery delay), check the live picture with the track-load workflow before recommending action.
+- Group the alerts by severity, highest first, then by load, so one problem load reads as one item.
+- For tracking-related alerts (lost signal, off route, stopped, pickup or delivery delay), check the live picture with the track-load skill before recommending action.
 - For each item give: what happened, how long it has been open, the likely next step (call the carrier, update the customer, request documents) and who would normally own it.
 - Keep the summary short: the user wants a work queue, not a report.
 
 ## 3. Act on alerts (changes data)
 
-The mutations are `acknowledgeShipmentAlert(ids)`, `snoozeShipmentAlerts(ids)`, `unsnoozeShipmentAlerts(ids)`, `resolveShipmentAlert(id, resolutionNote)`, `resolveShipmentAlerts(ids, resolutionNote)` and `createShipmentAlert(input)`.
-
-Acknowledging and snoozing affect only the current user. Resolving notifies the load's watchers.
+Search the schema for the alert mutations to acknowledge, snooze or resolve alerts. Read their descriptions: some actions affect only the current user, while resolving notifies the people watching the load.
 
 Before any `nexus_mutate` call, list exactly which alerts will change and how, and wait for the user's explicit confirmation. Never resolve an alert on your own judgement.
 

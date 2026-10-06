@@ -7,25 +7,26 @@ description: Find a Nexus load (shipment) and report where it is right now using
 
 Nexus holds the load; iTracker holds its live tracking. Every call runs as the signed-in user, so only loads that user can see are returned.
 
+## Work from the live schema
+
+The Nexus and iTracker APIs change over time, so don't assume field or argument names. Find them with `nexus_search_schema` / `itracker_search_schema`, confirm them with `nexus_describe_types` / `itracker_describe_types`, and when a query returns an error, read it, describe the type it names and fix the query instead of guessing.
+
 ## 1. Find the load in Nexus
 
-- Known Nexus load number: `nexus_query` with `load(id: …)`.
-- Anything else (customer PO, BOL, PRO or other reference, customer, carrier, lane, status): use `loads(...)`.
-  - It is paginated: pass `first` (keep it small, e.g. 10) and `page`, and select `data { … }` plus `paginatorInfo { total hasMorePages }`.
-  - Use the filter templates in the find-loads skill, e.g. `where: { column: CONCATENATED_REFERENCES, operator: LIKE, value: "%12345%" }` for a PO, BOL, PRO or pickup number.
+- With a Nexus load number, read that load directly.
+- With anything else (a PO, BOL, PRO or other reference, a customer, carrier, lane or status), search the loads as in the find-loads skill.
 - If several loads match, list them briefly (id, status, origin → destination, pickup date) and ask which one.
-
-Use `nexus_search_schema` and `nexus_describe_types` to confirm field and filter names before writing the query, and select only the fields you need: `id`, `status`, `itracker_reference_id`, client and carrier names, and the stops with their appointment and arrival times.
+- Select what the answer needs: status, customer and carrier, the stops with their appointment and arrival times, and the load's iTracker reference (search the Nexus schema for `itracker`).
 
 ## 2. Get live tracking from iTracker
 
-- `itracker_reference_id` on the Nexus load is the iTracker load tracker id. If it is empty, the load is not tracked in iTracker; say so and report from Nexus data only.
-- `itracker_query` with `loadTracker(id: …)`, selecting `status`, `eta_at`, `is_delayed`, `delay_in_minutes`, `delay_status`, `origin`, `destination`, the stops, the drivers and `alertSummary`.
-- For the movement trail use `checkpoints(id: …)`. For the tracking timeline use `events(...)`; describe its arguments first with `itracker_describe_types`.
+- The iTracker reference on the Nexus load identifies the same load in iTracker. If it is empty, the load isn't tracked in iTracker; say so and answer from Nexus data only.
+- Search the iTracker schema for the load tracker and read it by that reference: its status, ETA, delay, stops, drivers and alerts.
+- For the movement trail or the tracking timeline, search the iTracker schema for checkpoints and events.
 
 ## 3. Answer
 
-Lead with the answer: where the load is, whether it is on time, and the ETA to the next stop, with times in the stop's local timezone. Then add the supporting detail: last checkpoint and when it was recorded, delay reason, and any open alerts. Say clearly when tracking data is stale or missing rather than guessing.
+Lead with the answer: where the load is, whether it is on time, and the ETA to the next stop, with times in the stop's local timezone. Then add the supporting detail: the last position and when it was recorded, the delay reason, and any open alerts. Say clearly when tracking data is stale or missing rather than guessing.
 
 iTracker is read-only here. To change anything on a load, use the Nexus tools and follow the confirmation rule in the create-load skill.
 
