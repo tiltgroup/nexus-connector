@@ -1,0 +1,11 @@
+{
+  "name": "nexus",
+  "description": "Work with Nexus, the freight brokerage TMS, and iTracker live tracking from Claude: find and track loads, triage alerts, create loads, and quote and book LTL shipments.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Tilt Group"
+  },
+  "homepage": "https://github.com/tiltgroup/nexus-connector",
+  "repository": "https://github.com/tiltgroup/nexus-connector",
+  "keywords": ["freight", "logistics", "tms", "brokerage", "tracking"]
+}

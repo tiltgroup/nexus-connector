@@ -1,0 +1,14 @@
+{
+  "name": "nexus-connector",
+  "description": "Claude plugin for Nexus and iTracker by Tilt Group.",
+  "owner": {
+    "name": "Tilt Group"
+  },
+  "plugins": [
+    {
+      "name": "nexus",
+      "source": "./",
+      "description": "Nexus and iTracker workflows for freight brokers."
+    }
+  ]
+}
