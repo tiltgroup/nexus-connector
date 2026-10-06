@@ -56,4 +56,4 @@ Data you access through the connector stays subject to your company's agreement 
 
 ## License
 
-TODO_LICENSE
+Proprietary. Copyright (c) 2026 Tilt Group, all rights reserved; Tilt Group customers may use it with their AI assistants. See [LICENSE](LICENSE).

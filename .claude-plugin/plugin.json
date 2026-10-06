@@ -7,5 +7,12 @@
   },
   "homepage": "https://github.com/tiltgroup/nexus-connector",
   "repository": "https://github.com/tiltgroup/nexus-connector",
-  "keywords": ["freight", "logistics", "tms", "brokerage", "tracking"]
+  "keywords": [
+    "freight",
+    "logistics",
+    "tms",
+    "brokerage",
+    "tracking"
+  ],
+  "license": "SEE LICENSE IN LICENSE"
 }
