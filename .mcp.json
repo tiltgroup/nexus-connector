@@ -2,7 +2,7 @@
   "mcpServers": {
     "nexus": {
       "type": "http",
-      "url": "${NEXUS_MCP_URL:-https://nexus.tiltgroup.com/api/mcp}"
+      "url": "https://nexus.tiltgroup.com/api/mcp"
     }
   }
 }
