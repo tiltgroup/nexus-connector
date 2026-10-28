@@ -35,7 +35,7 @@ The plugin connects to production unless `NEXUS_MCP_URL` is set, so testers can 
 | Development | `https://nexus.dev.tltgrp.com/api/mcp` |
 | Staging | `https://nexus.staging.tltgrp.com/api/mcp` |
 
-The broker you sign in with must have the connection turned on in that environment's Nexus, under **Workspace settings → MCP connection**.
+The broker you sign in with must have the connection turned on in that environment's Nexus, under **Workspace settings → Connections → MCP** (**Allow MCP connection**).
 
 **Claude Code:** start Claude with the variable set, for example `NEXUS_MCP_URL=https://nexus.dev.tltgrp.com/api/mcp claude`, then run `/mcp` and sign in.
 

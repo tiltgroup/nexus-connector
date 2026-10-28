@@ -22,12 +22,12 @@ Every assistant connects to the same Nexus connector, a remote MCP server at `ht
 ## Before you start
 
 - You need a Nexus user account.
-- An administrator in your company with the **Manage Integrations** permission must enable the AI connector in Nexus under **Settings → Integrations**. Until then, the connector refuses requests.
+- An administrator in your company with the **Manage Integrations** permission must turn on **Allow MCP connection** in Nexus under **Workspace settings → Connections → MCP**. Until then, the connector refuses requests.
 - The assistant acts **as you**. Every request runs with your own Nexus permissions, so it can see and change only what you could in Nexus yourself. You sign in on the Nexus login page; the assistant never sees your password.
 - iTracker data is read-only through the connector.
 - The assistant describes every change and asks for your confirmation before it creates, updates, books or resolves anything.
 
-You can review or revoke the assistants connected to your account at any time in Nexus under **Settings → Integrations**.
+To disconnect your assistant, remove the Nexus connector in its settings (in Claude: **Settings → Connectors**). An administrator can turn **Allow MCP connection** off at any time, which stops every assistant in your company from reaching Nexus.
 
 ## Example prompts
 
