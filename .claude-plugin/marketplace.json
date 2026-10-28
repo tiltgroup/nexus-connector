@@ -6,7 +6,7 @@
   },
   "plugins": [
     {
-      "name": "nexus",
+      "name": "nexus-tms",
       "source": "./",
       "description": "Nexus and iTracker workflows for freight brokers."
     }

@@ -17,6 +17,12 @@ Connect your AI assistant to **Nexus**, the freight brokerage TMS, and **iTracke
 | ChatGPT (Business, Enterprise) | Coming soon | Your ChatGPT workspace admin | [ChatGPT](docs/chatgpt.md) |
 | Gemini Enterprise | Planned | Your Gemini Enterprise admin | [Gemini](docs/gemini.md) |
 
+In Claude Code, install the plugin with:
+
+```
+/plugin install nexus-tms --marketplace tiltgroup/nexus-connector
+```
+
 Every assistant connects to the same Nexus connector, a remote MCP server at `https://nexus.tiltgroup.com/api/mcp`, and uses the same workflows from [`skills/`](skills).
 
 ## Before you start
