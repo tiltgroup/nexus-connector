@@ -1,0 +1,42 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "nexus-tms",
+  "version": "0.5.0",
+  "description": "Work with Nexus, the freight brokerage TMS, and iTracker live tracking from Claude: find and track loads, triage alerts, create loads, and quote and book LTL shipments.",
+  "author": {
+    "name": "Tilt Group",
+    "url": "https://tilt.ai"
+  },
+  "homepage": "https://github.com/tiltgroup/nexus-connector",
+  "repository": "https://github.com/tiltgroup/nexus-connector",
+  "license": "SEE LICENSE IN LICENSE",
+  "keywords": [
+    "freight",
+    "logistics",
+    "tms",
+    "brokerage",
+    "tracking"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Nexus TMS",
+        "shortDescription": "Freight loads and tracking",
+        "longDescription": "Nexus is the transportation management system Tilt Group's freight brokerages use to run their loads, from order entry and carrier coverage to tracking, documents and billing. iTracker is its live driver-tracking app. This plugin connects ChatGPT to both and adds step-by-step skills for the everyday work.\n\nAsk about your loads in plain language: which loads pick up tomorrow without a carrier, where a truck is and whether it will make its appointment, or which shipments have critical alerts. ChatGPT can also do the routine work: create a load from order details or a pasted rate confirmation, acknowledge or resolve alerts, check a carrier for fraud warning signs, and request, compare and book LTL quotes.\n\nHow it works:\n- You sign in with your own Nexus account. Every request runs as you, with your Nexus permissions.\n- Before ChatGPT creates, updates, books or resolves anything, it describes the change and waits for your confirmation.\n- iTracker is read-only through the plugin.\n- Your company's Nexus administrator must turn on Allow MCP connection under Workspace settings, Connections, MCP.\n- Changes made through ChatGPT are recorded in the Nexus audit trail and marked as made via ChatGPT.",
+        "developerName": "Tilt Group",
+        "category": "Productivity",
+        "logo": "./assets/logo.png",
+        "composerIcon": "./assets/composer-icon.png",
+        "brandColor": "#066D89",
+        "websiteURL": "https://tilt.ai",
+        "supportURL": "https://tilt.ai",
+        "privacyPolicyURL": "https://tilt.ai/privacy-policy",
+        "defaultPrompt": [
+          "Which of my loads have critical alerts right now?",
+          "Where is my most recent load and will it make its delivery appointment?",
+          "Show me loads picking up tomorrow that still have no carrier."
+        ]
+      }
+    }
+  }
+}

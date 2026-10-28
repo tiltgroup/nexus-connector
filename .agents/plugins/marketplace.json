@@ -1,0 +1,20 @@
+{
+  "name": "nexus-connector",
+  "interface": {
+    "displayName": "Tilt Group"
+  },
+  "plugins": [
+    {
+      "name": "nexus-tms",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

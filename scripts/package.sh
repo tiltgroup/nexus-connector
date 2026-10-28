@@ -2,10 +2,20 @@
 # Builds the per-AI downloads from skills/, the single source of the workflows:
 #   dist/skills/<name>.zip      one skill per zip, SKILL.md at the root (ChatGPT upload)
 #   dist/nexus-instructions.md  every skill as one instructions text (Gemini agent)
+#   dist/nexus-tms-chatgpt.zip  the ChatGPT plugin package (plugin.json, mcp.json, skills/, assets/)
 set -euo pipefail
 
 root="$(cd "$(dirname "$0")/.." && pwd)"
 dist="$root/dist"
+
+# Claude and ChatGPT read different manifests; a release must not ship them out of step.
+versions="$(python3 -c 'import json,sys; print(*(json.load(open(f))["version"] for f in sys.argv[1:]))' \
+  "$root/plugin.json" "$root/.claude-plugin/plugin.json")"
+read -r chatgpt_version claude_version <<< "$versions"
+if [ "$chatgpt_version" != "$claude_version" ]; then
+  echo "plugin.json is $chatgpt_version but .claude-plugin/plugin.json is $claude_version" >&2
+  exit 1
+fi
 
 rm -rf "$dist"
 mkdir -p "$dist/skills"
@@ -27,4 +37,6 @@ for dir in "$root"/skills/*/; do
   printf '\n' >> "$instructions"
 done
 
-echo "Built $(ls "$dist/skills" | wc -l | tr -d ' ') skill zips and $(basename "$instructions") in $dist"
+(cd "$root" && zip -qr "$dist/nexus-tms-chatgpt.zip" plugin.json mcp.json skills assets LICENSE)
+
+echo "Built $(ls "$dist/skills" | wc -l | tr -d ' ') skill zips, $(basename "$instructions") and nexus-tms-chatgpt.zip in $dist"

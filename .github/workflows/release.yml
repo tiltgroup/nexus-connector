@@ -22,5 +22,5 @@ jobs:
         run: |
           gh release create "$GITHUB_REF_NAME" \
             --title "$GITHUB_REF_NAME" \
-            --notes "Skill zips for ChatGPT and the instructions file for Gemini. Claude installs the plugin straight from this repository." \
-            dist/skills/*.zip dist/nexus-instructions.md
+            --notes "The ChatGPT plugin package, single skill zips and the instructions file for Gemini. Claude installs the plugin straight from this repository." \
+            dist/nexus-tms-chatgpt.zip dist/skills/*.zip dist/nexus-instructions.md

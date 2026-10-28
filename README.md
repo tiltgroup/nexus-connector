@@ -14,7 +14,7 @@ Connect your AI assistant to **Nexus**, the freight brokerage TMS, and **iTracke
 | Assistant | Status | Who sets it up | Guide |
 |---|---|---|---|
 | Claude (web, desktop, Claude Code) | Pilot | You, or your Claude organization owner | [Claude](docs/claude.md) |
-| ChatGPT (Business, Enterprise) | Coming soon | Your ChatGPT workspace admin | [ChatGPT](docs/chatgpt.md) |
+| ChatGPT (paid plans) | Pilot | You, or your ChatGPT workspace admin | [ChatGPT](docs/chatgpt.md) |
 | Gemini Enterprise | Planned | Your Gemini Enterprise admin | [Gemini](docs/gemini.md) |
 
 In Claude Code, install the plugin with:
@@ -49,8 +49,9 @@ To disconnect your assistant, remove the Nexus connector in its settings (in Cla
 |---|---|
 | `skills/` | The workflows, one `SKILL.md` per workflow. The single source for every assistant. |
 | `.claude-plugin/`, `.mcp.json` | The Claude plugin and plugin marketplace. |
+| `plugin.json`, `mcp.json`, `assets/`, `.agents/` | The ChatGPT plugin and plugin marketplace. |
 | `docs/` | Setup guides per assistant. |
-| `scripts/package.sh` | Builds the downloads: one zip per skill for ChatGPT, and one instructions file for Gemini. |
+| `scripts/package.sh` | Builds the downloads: the ChatGPT plugin package, one zip per skill, and one instructions file for Gemini. |
 
 Each [release](https://github.com/tiltgroup/nexus-connector/releases) has those downloads attached, so nobody has to build anything.
 

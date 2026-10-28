@@ -1,17 +1,34 @@
 # Nexus in ChatGPT
 
-> **Coming soon.** ChatGPT support is not available yet. This page describes how setup will work.
+> **Pilot.** The connection works on paid ChatGPT plans. Installing the plugin from this repository is still being tested.
 
-Needs a ChatGPT **Business or Enterprise** workspace. ChatGPT only lets workspace admins add custom connectors, so Free, Plus and Pro accounts can't use it. Two pieces: the **app** gives ChatGPT access to Nexus, and the **skills** teach it the Nexus workflows.
+Two pieces: the **app** gives ChatGPT access to Nexus, and the **skills** teach it the Nexus workflows. The **Nexus TMS plugin** bundles both, with the Nexus logo.
 
-## Workspace admin, once
+To sign in, ChatGPT needs the Nexus client ID and client secret for ChatGPT. Ask Tilt Group support for them and keep the secret private.
 
-1. **Get the sign-in credentials.** Ask Tilt Group support for the ChatGPT client ID and client secret for your company. They identify ChatGPT to the Nexus login page; keep the secret private.
-2. **Allow custom apps:** in workspace settings, turn on developer mode (custom MCP connectors) for yourself.
-3. **Create the app:** add a new custom app with the connector URL `https://nexus.tiltgroup.com/api/mcp`, choose OAuth, and enter the client ID and secret from step 1. Leave the registration URL empty.
-4. **Publish it** to the workspace, or to the groups that work with loads.
-5. **Add the skills:** download the four skill zips from the latest [release](https://github.com/tiltgroup/nexus-connector/releases). For each one: **Skills → Create → Upload from your computer**, pick the zip, then share the skill with the same people.
+## Add the app (tested)
 
-## Everyone else
+Works on Plus, Pro, Business and Enterprise. On Business and Enterprise, a workspace admin may need to allow developer mode first.
 
-Open the Nexus app in ChatGPT, select **Connect**, and sign in with your Nexus account. The skills are used automatically when a request matches, or you can mention one by name.
+1. On chatgpt.com, open **Settings → Apps → Advanced settings** and turn on **Developer mode**.
+2. Back in **Settings → Apps**, select **Create** and enter:
+   - Name: `Nexus TMS`
+   - MCP server URL: `https://nexus.tiltgroup.com/api/mcp`
+   - Authentication: **OAuth**, with the client ID and client secret from Tilt Group support
+3. Select **Connect** and sign in with your Nexus account.
+
+Workspace admins can then publish the app to the people who work with loads.
+
+Write actions, such as creating a load, may need a Business or Enterprise plan; on Plus and Pro, ChatGPT may only read.
+
+## Add the skills
+
+Either download `nexus-tms-chatgpt.zip` from the latest [release](https://github.com/tiltgroup/nexus-connector/releases) and upload it as a plugin, or upload the single skill zips from the same release under **Skills → Create → Upload from your computer**.
+
+In the ChatGPT desktop app you can also add this repository as a plugin marketplace (**Plugins → Add → Add a marketplace**, `tiltgroup/nexus-connector`) and install **Nexus TMS** from it. Updates arrive when the marketplace is refreshed.
+
+## Using it
+
+Pick **Nexus TMS** from the tools menu in a chat, or just ask about your loads. ChatGPT describes every change and asks for your confirmation before it creates, updates, books or resolves anything.
+
+The broker you sign in with must have **Allow MCP connection** turned on in Nexus, under **Workspace settings → Connections → MCP**.
