@@ -13,8 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Install submission packaging dependencies
+        run: python3 -m pip install -r scripts/requirements-submission.txt
+
       - name: Build downloads
         run: bash scripts/package.sh
+
+      - name: Build and validate OpenAI submission archive
+        run: python3 scripts/package-submission.py
 
       - name: Publish release
         env:
@@ -22,5 +32,6 @@ jobs:
         run: |
           gh release create "$GITHUB_REF_NAME" \
             --title "$GITHUB_REF_NAME" \
-            --notes "The ChatGPT plugin package, single skill zips and the instructions file for Gemini. Claude installs the plugin straight from this repository." \
-            dist/nexus-tms-chatgpt.zip dist/skills/*.zip dist/nexus-instructions.md
+            --notes "The ChatGPT plugin package, OpenAI submission draft archive, single skill zips and the instructions file for Gemini. The submission draft still requires the review materials and checks documented in submission/STATUS.txt. Claude installs the plugin straight from this repository." \
+            dist/nexus-tms-chatgpt.zip dist/nexus-tms-openai-submission-draft.zip \
+            dist/skills/*.zip dist/nexus-instructions.md

@@ -3,10 +3,13 @@ NEXUS TMS PUBLIC SUBMISSION PREPARATION — 2026-11-03
 Status: DRAFT; not ready for public submission. Nothing uploaded or published.
 
 Rebuild
+  python3 -m pip install -r scripts/requirements-submission.txt
   python3 scripts/package-submission.py
   Requires Python 3, PyYAML and Pillow.
   Output: dist/nexus-tms-openai-submission-draft.zip
   Run after scripts/package.sh, which replaces dist/.
+  The v* tag release workflow installs these dependencies, runs both builders in
+  order, and attaches this archive alongside the ordinary release downloads.
   submission/openai.json overlays extensions.com.openai in the public copy only.
   Update this overlay as publisher facts and review materials are confirmed.
   Local validation checks the resulting archive. It is not the official Portal validator.
