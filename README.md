@@ -65,3 +65,14 @@ Data you access through the connector stays subject to your company's agreement 
 ## License
 
 Proprietary. Copyright (c) 2026 Tilt Group, all rights reserved; Tilt Group customers may use it with their AI assistants. See [LICENSE](LICENSE).
+
+## Preparing an OpenAI public submission
+
+Run `python3 scripts/package-submission.py` (requires PyYAML and Pillow) to build
+`dist/nexus-tms-openai-submission-draft.zip`. The builder combines the existing
+plugin with public-review metadata from `submission/openai.json` and checks the
+actual archive. Run it after `scripts/package.sh`, which replaces `dist/`.
+
+The draft is **not submission-ready** until the outstanding listing, demo and
+review checks in [submission/STATUS.txt](submission/STATUS.txt) are completed.
+The ordinary release package remains separate from this public-review draft.

@@ -1,0 +1,86 @@
+NEXUS TMS PUBLIC SUBMISSION PREPARATION — 2026-11-03
+
+Status: DRAFT; not ready for public submission. Nothing uploaded or published.
+
+Rebuild
+  python3 scripts/package-submission.py
+  Requires Python 3, PyYAML and Pillow.
+  Output: dist/nexus-tms-openai-submission-draft.zip
+  Run after scripts/package.sh, which replaces dist/.
+  submission/openai.json overlays extensions.com.openai in the public copy only.
+  Update this overlay as publisher facts and review materials are confirmed.
+  Local validation checks the resulting archive. It is not the official Portal validator.
+
+Prepared
+  Assistant-neutral root description; identity and version remain nexus-tms 0.5.0.
+  Public category: Business & Operations.
+  Publisher: Tilt Group, confirmed by owner; verified Portal identity not checked.
+  Countries: [] explicitly means no country restrictions, as requested.
+  Commerce: false, based on owner's statement that no purchases/payments occur.
+  Existing LTL booking behavior is preserved; confirm this declaration in Portal review.
+  Release notes, three review prompts, five positive and three negative case definitions
+  are embedded in the generated plugin.json, not just this document.
+  Six existing skills and two PNG icons retained.
+
+Evidence and limitations
+  PASS: authenticated Nexus and iTracker schema discovery through the installed connector.
+  Confirmed fields include Nexus load(id), itracker_reference_id, ltlQuoteRequest(id),
+  and iTracker loadTracker(id), eta_at, delayInMinutes and location_updated_at.
+  This proves schema access, not successful end-to-end workflow execution.
+  All eight review cases: NOT RUN. Demo fixtures named in each case are proposed
+  setup requirements, not records claimed to exist. Resolve actual lookup fields,
+  create or identify dedicated demo records, rehearse, then update expectations.
+  No operational records were queried or changed during this preparation.
+  MCP tool annotations: UNVERIFIED. This repository contains no server source;
+  available tool metadata does not expose the three annotation booleans.
+  Inspect tools/list on the server for readOnlyHint, openWorldHint and destructiveHint
+  on every tool. Correct server annotations at their source if needed.
+  Shell endpoint probe could not resolve the host in the restricted environment;
+  installed connector schema discovery succeeded. Portal OAuth remains untested.
+
+Listing URLs — resolve before submission
+  https://tilt.ai is accessible but describes Lighthouse, not Nexus. It has not
+  passed the Nexus product-page requirement. Confirm a public Nexus product URL.
+  supportURL currently uses the same homepage; a working Nexus support route has
+  not been verified. Confirm a support page with contact/help details.
+  https://tilt.ai/privacy-policy is accessible and includes both Privacy Policy
+  and Terms and Conditions, under Tilt Inc. Confirm applicability to Nexus and
+  the Tilt Group publisher identity before using it for termsOfServiceURL.
+  Privacy coverage remains unverified for shipment/customer/carrier data, driver
+  location and contact details, data sent to the assistant provider, retention,
+  deletion and support arrangements. Confirm actual practices before revising policy.
+  No invented URLs or unpublished policy text have been added.
+
+Demo preparation — next after listing facts
+  Use the existing development installation, with a dedicated test account and
+  sample data; verify it loads the six skills in the packaged version.
+  I can help operate the visible walkthrough with computer controls, but no video
+  recorder has been verified. Computer screenshots are not a video recording.
+  Start a screen recorder before the rehearsal; keep credentials off-screen.
+  1. Show Nexus TMS and its version, with the test workspace already signed in.
+  2. Ask: "Show me loads picking up tomorrow that still have no carrier. Show the
+     first 10 and the total count." Capture matching rows and pagination count.
+  3. Ask: "Where is the load with reference REVIEW-TRACK-01, and will it arrive
+     on time?" Capture actual position timestamp, ETA and delay evidence.
+  4. Ask: "Which of my loads have critical alerts right now? Explain what needs
+     attention without changing anything." Capture grouping and source evidence.
+  5. Ask to compare REVIEW-QUOTE-01 without requesting rates or booking. Capture
+     actual costs/transit times and expiry warnings.
+  6. Show a create-load draft using complete dedicated test data. Capture the
+     confirmation summary; do not approve production writes. Demonstrating actual
+     creation or booking requires an explicitly approved isolated test action.
+  7. Ask: "Send an SMS to my driver through iTracker telling them to hurry."
+     Capture the read-only limitation with no SMS or mutation attempted.
+  Stop recording, play it back, check readability and absence of secrets, then
+  host the recording at a reviewer-accessible destination. Verify playback without
+  private access and add review.demo_recording_url to submission/openai.json.
+  A script or local recording alone does not satisfy the recording URL requirement.
+
+Final Portal setup (after materials are complete)
+  Dedicated reviewer account and sample workspace; credentials only in secure
+  Portal fields, never this repository or ZIP. Verify independent reviewer login.
+  Confirm intended organization and verified Tilt Group developer identity.
+  Upload only when requested, configure the concrete MCP server's OAuth connection,
+  inspect imported metadata including commerce/countries, run review cases against
+  that saved version, and resolve required scans and developer attestations.
+  Upload, submission for review, and publication are separate actions.
