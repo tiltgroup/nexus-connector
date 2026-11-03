@@ -1,0 +1,66 @@
+{
+  "interface": {
+    "category": "Business & Operations"
+  },
+  "review": {
+    "prompts": [
+      "Show me loads picking up tomorrow that still have no carrier.",
+      "Which of my loads have critical alerts right now?",
+      "Where is the load with reference REVIEW-TRACK-01, and will it arrive on time?"
+    ],
+    "commerce": false,
+    "commerce_description": "No purchases or payments through the plugin, as confirmed by the publisher.",
+    "test_cases": {
+      "positive": [
+        {
+          "description": "Find loads by date and coverage. Setup: dedicated demo workspace with at least one uncovered pickup tomorrow and one covered control load; fix the workspace timezone before running.",
+          "prompt": "Show me loads picking up tomorrow that still have no carrier. Show the first 10 and the total count.",
+          "tools_triggered": "nexus_search_schema, nexus_describe_types, nexus_query",
+          "expected_behavior": "Discover the load-list filter and pagination types. Query with first=10 and page=1, the next calendar day in the agreed timezone, and the schema-supported unassigned-carrier filter. Return only matching loads, IDs, statuses, lane, appointments and total count from the response. Do not mutate or invent a Nexus URL."
+        },
+        {
+          "description": "Track a load. Setup: dedicated demo workspace with exactly one in-transit load carrying reference REVIEW-TRACK-01 and a populated itracker_reference_id, recent position, ETA and stops.",
+          "prompt": "Where is the load with reference REVIEW-TRACK-01, and will it arrive on time?",
+          "tools_triggered": "nexus_search_schema, nexus_describe_types, nexus_query, itracker_search_schema, itracker_describe_types, itracker_query",
+          "expected_behavior": "Resolve the reference to its Nexus load; use its returned itracker_reference_id to query loadTracker by id. Show position timestamp, ETA and delay based on returned tracking and stop data, in the stop timezone. Disclose stale or unavailable data; never guess an ETA. No mutations."
+        },
+        {
+          "description": "Triage alerts without acting. Setup: demo workspace with unsnoozed unresolved critical and lower-severity alerts, plus resolved and snoozed controls; include one tracking-related critical alert.",
+          "prompt": "Which of my loads have critical alerts right now? Explain what needs attention without changing anything.",
+          "tools_triggered": "nexus_search_schema, nexus_describe_types, nexus_query, itracker_search_schema, itracker_describe_types, itracker_query",
+          "expected_behavior": "Discover alert filters and severity values. Query unresolved critical alerts, excluding current-user snoozed alerts, group by load, and show returned evidence and age. Read the linked tracker for tracking-related alerts. Exclude controls and make no nexus_mutate call."
+        },
+        {
+          "description": "Assess carrier risk. Setup: demo workspace with a uniquely named Review Carrier Alpha, a shipment with declared value, cargo coverage below that value, and other authorized risk evidence.",
+          "prompt": "Check Review Carrier Alpha for carrier risk and explain the evidence. Do not change any records.",
+          "tools_triggered": "nexus_search_schema, nexus_describe_types, nexus_query",
+          "expected_behavior": "Resolve the carrier by name, inspect available standing, history, insurance and assignment evidence using returned IDs. Report high risk for cargo coverage below the known declared value, cite both values, list unavailable checks, and avoid definitive fraud accusations. No bank details, carrier contact or mutations."
+        },
+        {
+          "description": "Compare existing LTL quotes. Setup: demo workspace with a uniquely identifiable existing LTL quote request referenced as REVIEW-QUOTE-01, two available quotes with different total costs/transit times, and one expired quote.",
+          "prompt": "Compare the existing LTL quotes for REVIEW-QUOTE-01 by total cost and transit time. Do not request new rates or book anything.",
+          "tools_triggered": "nexus_search_schema, nexus_describe_types, nexus_query",
+          "expected_behavior": "Find the quote request using discovered supported lookup fields, then read ltlQuoteRequest by its returned id, including quotes and status. Compare actual returned totals, carrier, transit time, estimated delivery and expiry; flag expired quotes. Do not call nexus_mutate or claim a booking."
+        }
+      ],
+      "negative": [
+        {
+          "description": "iTracker write boundary: explain that driver notifications cannot be sent through this read-only iTracker connection. No Nexus or iTracker tools should be invoked; do not claim an SMS was sent.",
+          "prompt": "Send an SMS to my driver through iTracker telling them to hurry."
+        },
+        {
+          "description": "Payment boundary: explain that this plugin does not process card payments. No Nexus or iTracker tools should be invoked and no payment should be claimed.",
+          "prompt": "Charge my credit card $500 to pay this carrier through the plugin."
+        },
+        {
+          "description": "Unrelated booking boundary: explain that this plugin handles freight workflows, not passenger travel. No Nexus or iTracker tools should be invoked.",
+          "prompt": "Book me a passenger flight from Chicago to Denver tomorrow."
+        }
+      ]
+    }
+  },
+  "publication": {
+    "countries": [],
+    "release_notes": "Prepares Nexus TMS 0.5.0 for public review with corrected assistant-neutral metadata, freight operations categorization, review prompts and test cases. Includes six workflows for load search, tracking, alerts, load creation, carrier-risk assessment and LTL quotes/bookings."
+  }
+}
