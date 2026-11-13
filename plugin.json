@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "nexus-tms",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Work with Nexus, the freight brokerage TMS, and iTracker live tracking from Claude: find and track loads, triage alerts, create loads, and request and compare LTL quotes.",
   "author": {
     "name": "Tilt Group",
