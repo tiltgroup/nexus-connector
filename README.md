@@ -7,7 +7,7 @@ Connect your AI assistant to **Nexus**, the freight brokerage TMS, and **iTracke
 - **Triage alerts:** see which loads need attention, grouped by severity, and acknowledge, snooze or resolve alerts.
 - **Create a load:** turn order details or a pasted rate confirmation into a validated Nexus load.
 - **Check a carrier:** look for signs of fraud, double brokering or cargo-theft risk on a carrier or a load, with the evidence and suggested next steps.
-- **Quote and book:** request LTL quotes, compare carriers on price and transit time, and book the one you choose. You can also check lane pricing and historical rates for truckload.
+- **Quote:** request LTL quotes and compare carriers on price and transit time, then book the one you choose in Nexus. You can also check lane pricing and historical rates for truckload.
 
 ## Choose your assistant
 
@@ -41,7 +41,7 @@ To disconnect your assistant, remove the Nexus connector in its settings (in Cla
 - "Which of my loads have critical alerts right now?"
 - "Show me everything picking up in Texas tomorrow that still has no carrier."
 - "Create a load for Acme Foods: pickup Dallas TX tomorrow 8am, deliver Atlanta GA Friday, 53' dry van, 38,000 lb of canned goods, customer rate $2,450."
-- "Get LTL quotes for 4 pallets, class 70, 1,800 lb, from Chicago 60607 to Denver 80216, and book the cheapest one that arrives by Thursday."
+- "Get LTL quotes for 4 pallets, class 70, 1,800 lb, from Chicago 60607 to Denver 80216, and tell me the cheapest one that arrives by Thursday."
 
 ## What's in this repository
 
