@@ -51,7 +51,7 @@ To disconnect your assistant, remove the Nexus connector in its settings (in Cla
 | `.claude-plugin/`, `.mcp.json` | The Claude plugin and plugin marketplace. |
 | `plugin.json`, `mcp.json`, `assets/`, `.agents/` | The ChatGPT plugin and plugin marketplace. |
 | `docs/` | Setup guides per assistant. |
-| `scripts/package.sh` | Builds the downloads: the ChatGPT plugin package, one zip per skill, and one instructions file for Gemini. |
+| `.github/workflows/release.yml` | Builds the downloads on each `v*` tag: the ChatGPT plugin package, one zip per skill, and one instructions file for Gemini. |
 
 Each [release](https://github.com/tiltgroup/nexus-connector/releases) has those downloads attached, so nobody has to build anything.
 
